@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: Georgia, 'Cormorant Garamond', serif;
+    --font-sans: "Helvetica Neue", Helvetica, Arial, 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Custom scrollbar for dark luxury experience */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a253d;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c9a96a;
+}
+
+/* Glassmorphism utility aligned with Artistic Flair */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(248, 246, 242, 0.12);
+}
+
+.glass-panel-gold {
+  background: rgba(26, 37, 61, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(201, 169, 106, 0.25);
+}
+
+.glass-panel-light {
+  background: rgba(248, 246, 242, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(201, 169, 106, 0.25);
+}
+
+/* Golden subtle glow & accents */
+.gold-glow {
+  box-shadow: 0 0 40px -5px rgba(201, 169, 106, 0.25);
+}
+
+.gold-text-gradient {
+  background: linear-gradient(135deg, #F8F6F2 0%, #E2D1A6 50%, #C9A96A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Artistic geometric border overlay styling */
+.artistic-frame {
+  position: relative;
+}
+
+.artistic-frame::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: 0.5px solid rgba(201, 169, 106, 0.3);
+  pointer-events: none;
+  transform: rotate(1deg);
+}
+

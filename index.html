@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function() {
+        try {
+          var origFetch = window.fetch;
+          var _fetch = origFetch;
+          Object.defineProperty(window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get: function() {
+              return _fetch || origFetch;
+            },
+            set: function(fn) {
+              if (typeof fn === 'function') {
+                _fetch = fn;
+              }
+            }
+          });
+        } catch (e) {
+          // fetch getter patch initialized
+        }
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sutra Luminis | Luxury Bespoke Decorative Lighting & Sculptural Art</title>
+    <meta name="description" content="Sutra Luminis is a luxury bespoke decorative lighting and architectural installation studio crafting mouth-blown glass art and modern engineering masterworks." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#0B0F17] text-[#F8F6F2] font-sans antialiased selection:bg-[#C9A96A] selection:text-[#0B0F17]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
