@@ -21,7 +21,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenStartProject }) => {
         <div className="max-w-4xl mb-20">
           <div className="inline-flex items-center space-x-2 text-[#C9A96A] text-xs uppercase tracking-[0.25em] font-medium mb-4">
             <span className="w-2 h-2 rounded-full bg-[#C9A96A]" />
-            <span>The Sutra Philosophy</span>
+            <span>The SUN LUMINOUS Philosophy</span>
           </div>
           <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-light text-[#F8F6F2] tracking-tight leading-tight mb-8">
             We Don't Manufacture Fixtures.{' '}
@@ -31,7 +31,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenStartProject }) => {
           </h1>
 
           <p className="text-base sm:text-lg text-gray-300 font-light leading-relaxed mb-6">
-            Sutra Luminis is a luxury bespoke decorative lighting and sculptural art studio. Positioned alongside global luxury pioneers like Lasvit, Preciosa, Bocci, and WonderGlass, Sutra combines high-temperature furnace glass discipline with aerospace engineering to illuminate iconic spaces worldwide.
+            SUN LUMINOUS is a luxury bespoke decorative lighting and sculptural art studio. Positioned alongside global luxury pioneers like Lasvit, Preciosa, Bocci, and WonderGlass, SUN LUMINOUS combines high-temperature furnace glass discipline with aerospace engineering to illuminate iconic spaces worldwide.
           </p>
         </div>
 

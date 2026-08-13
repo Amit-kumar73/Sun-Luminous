@@ -307,6 +307,54 @@ app.get("/api/projects", (req, res) => {
   res.json(projectsStore);
 });
 
+// GET official PDF catalogues
+app.get("/api/catalogs", (req, res) => {
+  res.json([
+    {
+      id: 'pdf-hospitality-portfolio',
+      title: 'SUN LUMINOUS Hotel Portfolio',
+      subtitle: 'Bespoke Lighting Solutions for Luxury Hospitality & Public Architecture',
+      pages: 55,
+      year: '2024',
+      category: 'Hospitality Portfolio',
+      contactPerson: {
+        name: 'Ms. Kamya Raghuvanshi',
+        role: 'Business Head - ID / Hospitality',
+        phone: ['+91 93127 40404', '+91 95608 08413'],
+        email: ['interiors11@sunluminous.com', 'interiors12@sunluminous.com']
+      }
+    },
+    {
+      id: 'pdf-residential-catalogue',
+      title: 'SUN LUMINOUS Residential Catalogue',
+      subtitle: 'Curated Decorative & Sculptural Masterworks for Private Residences',
+      pages: 66,
+      year: '2023 / 2024',
+      category: 'Residential Catalogue',
+      contactPerson: {
+        name: 'Ms. Kamya Raghuvanshi',
+        role: 'Business Head - ID / Hospitality',
+        phone: ['+91 93127 40404', '+91 95608 08413'],
+        email: ['interiors11@sunluminous.com', 'interiors12@sunluminous.com']
+      }
+    },
+    {
+      id: 'pdf-large-installations',
+      title: 'SUN LUMINOUS Large Lighting Installations',
+      subtitle: 'Monumental Sculptural Glass & Atrium Illumination Masterworks (400+ Formations & Elements)',
+      pages: 47,
+      year: '2024',
+      category: 'Large Installations',
+      contactPerson: {
+        name: 'Ms. Kamya Raghuvanshi',
+        role: 'Business Head - ID / Hospitality',
+        phone: ['+91 93127 40404', '+91 95608 08413'],
+        email: ['interiors11@sunluminous.com', 'interiors12@sunluminous.com']
+      }
+    }
+  ]);
+});
+
 // POST create project
 app.post("/api/projects", (req, res) => {
   const newProj = {
@@ -342,7 +390,7 @@ app.post("/api/leads", async (req, res) => {
   try {
     const ai = getGeminiAi();
     if (ai) {
-      const prompt = `You are a high-end luxury architectural lead assessor for Sutra Luminis (bespoke lighting studio). Analyze this new project lead:
+      const prompt = `You are a high-end luxury architectural lead assessor for SUN LUMINOUS (bespoke lighting studio). Analyze this new project lead:
 Name: ${newLead.name}
 Company: ${newLead.company}
 Project Type: ${newLead.projectType}
@@ -395,7 +443,7 @@ app.post("/api/gemini/assistant", async (req, res) => {
 
     const { roomHeightFeet, roomType, style, colorPalette, additionalDetails } = req.body;
 
-    const systemInstruction = `You are the Master Architectural Lighting Design Consultant for Sutra Luminis, a global luxury bespoke decorative lighting and sculptural art studio comparable to Lasvit, Preciosa, Bocci, and WonderGlass.
+    const systemInstruction = `You are the Master Architectural Lighting Design Consultant for SUN LUMINOUS, a global luxury bespoke decorative lighting and sculptural art studio comparable to Lasvit, Preciosa, Bocci, and WonderGlass.
 Your task is to provide an elite, expert architectural lighting proposal for a client's space based on their parameters.
 Always maintain a refined, sophisticated tone, emphasizing mouth-blown glass craft, custom metal engineering, color temperature strategies (e.g. 2700K - 3000K warm ambient), structural suspension drops, element counts, and artistic harmony.`;
 

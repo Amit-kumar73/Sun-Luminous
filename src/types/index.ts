@@ -142,6 +142,62 @@ export interface ConfiguratorState {
   targetBudget: string;
 }
 
+export interface InstallationFormation {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  iconName?: string;
+  recommendedSpaces: string[];
+}
+
+export interface InstallationElement {
+  id: string;
+  code: string;
+  name: string;
+  material: string;
+  finish: string;
+  imageUrl: string;
+  description: string;
+}
+
+export interface ClientPartner {
+  name: string;
+  category: 'Builders' | 'Hospitality/Hotels' | 'Corporate/Commercial' | 'Residential';
+  badge?: string;
+}
+
+export interface PDFCatalog {
+  id: string;
+  title: string;
+  subtitle: string;
+  year: string;
+  pages: number;
+  featured: boolean;
+  category: 'Hospitality' | 'Residential' | 'Large Installations';
+  coverImage: string;
+  highlights: string[];
+  contactPerson: {
+    name: string;
+    role: string;
+    phone: string[];
+    email: string[];
+  };
+}
+
+export interface WorkflowStep {
+  stepNumber: number;
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
+export interface HospitalityAdvantage {
+  number: string;
+  title: string;
+  description: string;
+}
+
 export interface SupabaseConfig {
   url: string;
   anonKey: string;

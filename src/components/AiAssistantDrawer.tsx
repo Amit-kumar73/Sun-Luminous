@@ -74,7 +74,7 @@ export const AiAssistantDrawer: React.FC<AiAssistantDrawerProps> = ({
                 Gemini AI Lighting Consultant
               </h2>
               <p className="text-[10px] text-[#C9A96A] uppercase tracking-widest font-medium">
-                Sutra Architectural Intelligence Engine
+                SUN LUMINOUS Architectural Intelligence Engine
               </p>
             </div>
           </div>

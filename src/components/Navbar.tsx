@@ -88,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex flex-col text-left group focus:outline-none cursor-pointer"
           >
             <span className="text-xl md:text-2xl tracking-[0.3em] font-light uppercase text-[#F8F6F2] group-hover:text-[#C9A96A] transition-colors">
-              SUTRA LUMINIS
+              SUN LUMINOUS
             </span>
           </motion.button>
 

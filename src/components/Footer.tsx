@@ -46,7 +46,7 @@ export const Footer: React.FC<FooterProps> = ({
                 S
               </span>
               <span className="font-serif text-2xl font-light tracking-[0.2em] text-[#F8F6F2]">
-                SUTRA LUMINIS
+                SUN LUMINOUS
               </span>
             </div>
 
@@ -54,14 +54,22 @@ export const Footer: React.FC<FooterProps> = ({
               Luxury bespoke decorative lighting, sculptural installations, glass art, and architectural masterworks. Handcrafted with 1,450°C furnace glassblowing and precision metal engineering.
             </p>
 
-            <div className="pt-2 text-xs text-[#F8F6F2]/70 space-y-1">
+            <div className="pt-3 text-xs text-[#F8F6F2]/80 space-y-1.5 border-t border-[#F8F6F2]/10">
+              <div className="text-[11px] uppercase tracking-wider text-[#C9A96A] font-semibold">
+                Direct Hospitality & ID Desk:
+              </div>
+              <div className="text-white font-medium">Ms. Kamya Raghuvanshi (Business Head)</div>
               <div className="flex items-center space-x-2">
-                <MapPin className="w-3.5 h-3.5 text-[#C9A96A]" />
-                <span>Global Atelier • London • Dubai • Mumbai • Singapore</span>
+                <Phone className="w-3.5 h-3.5 text-[#C9A96A]" />
+                <span>+91 93127 40404 &nbsp;|&nbsp; +91 95608 08413</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-3.5 h-3.5 text-[#C9A96A]" />
-                <span>architects@sutraluminis.com</span>
+                <span>interiors11@sunluminous.com</span>
+              </div>
+              <div className="flex items-center space-x-2 text-gray-400">
+                <MapPin className="w-3.5 h-3.5 text-[#C9A96A]" />
+                <span>India Blowing Centre & Global Atelier (Delhi • Mumbai • London • Dubai)</span>
               </div>
             </div>
           </div>
@@ -155,7 +163,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#F8F6F2]/10 flex flex-col sm:flex-row items-center justify-between text-xs text-[#F8F6F2]/50 font-light gap-4">
-          <p>© {new Date().getFullYear()} Sutra Luminis Inc. All Rights Reserved. Bespoke Lighting Architecture.</p>
+          <p>© {new Date().getFullYear()} SUN LUMINOUS Inc. All Rights Reserved. Bespoke Lighting Architecture.</p>
 
           <div className="flex items-center space-x-6">
             <button
