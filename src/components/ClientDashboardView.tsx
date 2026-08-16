@@ -72,7 +72,7 @@ export const ClientDashboardView: React.FC<ClientDashboardViewProps> = ({
 }) => {
   // Auth state
   const [clientEmail, setClientEmail] = useState<string>(() => {
-    return localStorage.getItem('sutra_client_email') || '';
+    return localStorage.getItem('sun_luminous_client_email') || localStorage.getItem('sutra_client_email') || '';
   });
   const [inputEmail, setInputEmail] = useState<string>('');
   const [authError, setAuthError] = useState<string>('');
@@ -175,18 +175,19 @@ export const ClientDashboardView: React.FC<ClientDashboardViewProps> = ({
     }
     const cleanEmail = inputEmail.trim().toLowerCase();
     setClientEmail(cleanEmail);
-    localStorage.setItem('sutra_client_email', cleanEmail);
+    localStorage.setItem('sun_luminous_client_email', cleanEmail);
     setAuthError('');
   };
 
   const handleQuickLogin = (email: string) => {
     setClientEmail(email);
-    localStorage.setItem('sutra_client_email', email);
+    localStorage.setItem('sun_luminous_client_email', email);
     setAuthError('');
   };
 
   const handleLogout = () => {
     setClientEmail('');
+    localStorage.removeItem('sun_luminous_client_email');
     localStorage.removeItem('sutra_client_email');
   };
 
