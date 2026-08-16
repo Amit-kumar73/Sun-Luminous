@@ -239,24 +239,24 @@ export const ArchitectsPortalView: React.FC<ArchitectsPortalViewProps> = ({
                   Let’s Shape Your Next Architectural Space
                 </h3>
                 <p className="text-xs text-gray-300 font-light">
-                  Connect with Ms. Kamya Raghuvanshi (Business Head — ID / Hospitality) for 1:1 project collaboration, CAD specs & finish boxes.
+                  Connect with Ms. Ananya Sharma (Head of Hospitality & Bespoke Commissions) for 1:1 project collaboration, CAD specs & finish boxes.
                 </p>
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
                 <a
-                  href="tel:+919312740404"
+                  href="tel:+919820188472"
                   className="px-5 py-2.5 bg-[#1E293B] hover:bg-[#2A374A] text-white rounded text-xs font-semibold flex items-center space-x-2 border border-gray-700"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#C9A96A]" />
-                  <span>+91 93127 40404</span>
+                  <span>+91 98201 88472</span>
                 </a>
                 <a
-                  href="mailto:interiors11@sutraluminis.com"
+                  href="mailto:architects@sunluminous.com"
                   className="px-5 py-2.5 bg-[#C9A96A] hover:bg-[#D4AF37] text-[#0B0F17] font-semibold text-xs rounded flex items-center space-x-2"
                 >
                   <Mail className="w-3.5 h-3.5" />
-                  <span>interiors11@sutraluminis.com</span>
+                  <span>architects@sunluminous.com</span>
                 </a>
               </div>
             </div>

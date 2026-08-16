@@ -76,11 +76,11 @@ export function App() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.35 }}
-          className="min-h-screen bg-[#0F172A] text-[#F8F6F2] font-sans selection:bg-[#C9A96A] selection:text-[#0F172A] relative overflow-x-hidden"
+          className="min-h-screen bg-[#FAF8F5] text-[#1C1917] font-sans selection:bg-[#B38E46] selection:text-white relative overflow-x-hidden"
         >
           {/* Side Accent Metadata from Artistic Flair Theme */}
           <div className="fixed right-2 top-1/2 -translate-y-1/2 z-30 pointer-events-none hidden xl:block">
-            <div className="text-[10px] rotate-90 origin-right uppercase tracking-[0.5em] text-[#F8F6F2]/20 font-sans">
+            <div className="text-[10px] rotate-90 origin-right uppercase tracking-[0.5em] text-[#1C1917]/25 font-sans">
               Architecture • Art • Engineering
             </div>
           </div>

@@ -47,19 +47,19 @@ export interface ClientDocument {
 
 const SAMPLE_CLIENT_EMAILS = [
   {
-    email: 'alexandra@vancedesign.co.uk',
+    email: 'client.mayfair@sunluminous.com',
     name: 'Alexandra Vance',
     company: 'Vance & Partners Interior Architecture',
     project: 'Mayfair Boutique Hotel Foyer'
   },
   {
-    email: 'client@lokhandwala.com',
+    email: 'client.minerva@sunluminous.com',
     name: 'Lokhandwala Engineering',
     company: 'Lokhandwala Infrastructure',
     project: 'Minerva Towers Grand Atrium'
   },
   {
-    email: 'design@oberoibali.com',
+    email: 'client.bali@sunluminous.com',
     name: 'The Oberoi Group',
     company: 'Oberoi Hotels & Resorts',
     project: 'Water Lily Pavilion Bali'
@@ -299,7 +299,7 @@ export const ClientDashboardView: React.FC<ClientDashboardViewProps> = ({
                   type="email"
                   value={inputEmail}
                   onChange={(e) => setInputEmail(e.target.value)}
-                  placeholder="alexandra@vancedesign.co.uk"
+                  placeholder="client.mayfair@sunluminous.com"
                   className="w-full bg-[#0B0F17] border border-gray-700 focus:border-[#C9A96A] rounded-lg pl-10 pr-4 py-3 text-xs text-[#F8F6F2] placeholder-gray-600 focus:outline-none transition-all"
                   required
                 />
@@ -533,7 +533,7 @@ export const ClientDashboardView: React.FC<ClientDashboardViewProps> = ({
                         </div>
 
                         <a
-                          href={`https://wa.me/18005557887?text=${encodeURIComponent(`Hello Sutra Luminis, inquiring about lead status for ${lead.projectType} (${lead.id}).`)}`}
+                          href={`https://wa.me/919820188472?text=${encodeURIComponent(`Hello SUN LUMINOUS Concierge, inquiring about lead status for ${lead.projectType} (${lead.id}).`)}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold uppercase tracking-wider rounded-md flex items-center space-x-2 self-start md:self-auto cursor-pointer transition-all"

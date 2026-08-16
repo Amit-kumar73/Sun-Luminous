@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { MapPin, ArrowUpRight, Sparkles, Filter, Layers, Check, LayoutGrid } from 'lucide-react';
 import { Project, ProjectCategory } from '../types';
 import { ProjectCardSkeleton } from './SkeletonLoader';
+import { useLanguage } from '../lib/LanguageContext';
 
 interface FeaturedProjectsGridProps {
   projects: Project[];
@@ -14,6 +15,7 @@ interface FeaturedProjectsGridProps {
 interface CategoryOption {
   id: string;
   label: string;
+  labelHi: string;
 }
 
 export const FeaturedProjectsGrid: React.FC<FeaturedProjectsGridProps> = ({
@@ -22,16 +24,17 @@ export const FeaturedProjectsGrid: React.FC<FeaturedProjectsGridProps> = ({
   onSelectProject,
   onOpenStartProject,
 }) => {
+  const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
 
   const categories: CategoryOption[] = [
-    { id: 'ALL', label: 'All Works' },
-    { id: 'Residential', label: 'Residential' },
-    { id: 'Commercial', label: 'Commercial' },
-    { id: 'Sculptural', label: 'Sculptural' },
-    { id: 'Hospitality', label: 'Hospitality' },
-    { id: 'Builder', label: 'Builder' },
-    { id: 'Heritage & Religious', label: 'Heritage & Religious' },
+    { id: 'ALL', label: 'All Works', labelHi: 'सभी परियोजनाएं' },
+    { id: 'Residential', label: 'Residential', labelHi: 'आवासीय' },
+    { id: 'Commercial', label: 'Commercial', labelHi: 'व्यावसायिक' },
+    { id: 'Sculptural', label: 'Sculptural Art', labelHi: 'मूर्तिकला कला' },
+    { id: 'Hospitality', label: 'Hospitality', labelHi: 'हॉस्पिटैलिटी' },
+    { id: 'Builder', label: 'Large Installations', labelHi: 'भव्य इंस्टॉलेशन' },
+    { id: 'Heritage & Religious', label: 'Heritage & Palaces', labelHi: 'हेरिटेज व महल' },
   ];
 
   const matchProjectCategory = (project: Project, categoryKey: string): boolean => {
@@ -82,55 +85,58 @@ export const FeaturedProjectsGrid: React.FC<FeaturedProjectsGridProps> = ({
   const showSkeletons = isLoading || projects.length === 0;
 
   return (
-    <section id="portfolio" className="py-24 bg-[#0B0F17] relative">
+    <section id="portfolio" className="py-20 bg-[#FAF8F5] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-gray-800/80 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 border-b border-[#E5E0D5] pb-8">
           <div>
-            <div className="inline-flex items-center space-x-2 text-[#C9A96A] text-xs uppercase tracking-[0.25em] font-medium mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C9A96A]" />
-              <span>Architectural Portfolio</span>
+            <div className="inline-flex items-center space-x-2 text-[#9E7B35] text-xs uppercase tracking-[0.25em] font-semibold mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9E7B35]" />
+              <span>{language === 'hi' ? 'वास्तुशिल्प पोर्टफोलियो' : 'Architectural Portfolio'}</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-5xl font-light text-[#F8F6F2] tracking-tight">
-              Selected Global Projects
+            <h2 className="font-serif text-3xl sm:text-5xl font-light text-[#1C1917] tracking-tight">
+              {language === 'hi' ? 'चयनित वैश्विक मास्टरवर्क्स' : 'Selected Global Projects'}
             </h2>
           </div>
 
-          <p className="text-xs sm:text-sm text-gray-400 font-light max-w-md mt-4 md:mt-0 leading-relaxed">
-            From 100-foot vertical atrium drops to floating marine glass pavilions, each Sutra installation is custom-engineered and handcrafted to order.
+          <p className="text-xs sm:text-sm text-[#57534E] font-light max-w-md mt-4 md:mt-0 leading-relaxed">
+            {language === 'hi'
+              ? '100-फुट ऊंचे वर्टिकल एट्रियम ड्रॉप्स से लेकर तैरते ग्लास पैवेलियन तक, प्रत्येक इंस्टॉलेशन अनुकूलित रूप से हस्तनिर्मित है।'
+              : 'From 100-foot vertical atrium drops to floating marine glass pavilions, each installation is custom-engineered and handcrafted to order.'}
           </p>
         </div>
 
         {/* Animated Category Filter Navigation */}
         <div className="mb-10">
-          <div className="flex items-center space-x-2 overflow-x-auto pb-4 pt-1 scrollbar-none">
+          <div className="flex items-center space-x-2 overflow-x-auto pb-3 pt-1 scrollbar-none">
             {categories.map((cat) => {
               const isActive = selectedCategory === cat.id;
               const count = getCategoryCount(cat.id);
+              const label = language === 'hi' ? cat.labelHi : cat.label;
 
               return (
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`relative px-4 py-2 rounded-full text-xs uppercase tracking-wider font-medium whitespace-nowrap transition-colors duration-200 cursor-pointer flex items-center space-x-2 ${
+                  className={`relative px-4 py-2 rounded-full text-xs uppercase tracking-wider font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center space-x-2 ${
                     isActive
-                      ? 'text-[#0B0F17] font-semibold'
-                      : 'text-gray-400 hover:text-white border border-gray-800/80 bg-[#0F172A]/80 hover:border-[#C9A96A]/40'
+                      ? 'text-white'
+                      : 'text-[#57534E] hover:text-[#1C1917] border border-[#E0D9CC] bg-white hover:border-[#9E7B35]'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeCategoryPill"
-                      className="absolute inset-0 bg-[#C9A96A] rounded-full shadow-lg shadow-[#C9A96A]/25 z-0"
+                      className="absolute inset-0 bg-[#9E7B35] rounded-full shadow-md z-0"
                       transition={{ type: "spring", stiffness: 450, damping: 35 }}
                     />
                   )}
-                  <span className="relative z-10">{cat.label}</span>
+                  <span className="relative z-10">{label}</span>
                   <span
-                    className={`relative z-10 text-[10px] px-1.5 py-0.2 rounded-full ${
+                    className={`relative z-10 text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
                       isActive
-                        ? 'bg-[#0B0F17]/20 text-[#0B0F17] font-bold'
-                        : 'bg-[#1E293B] text-gray-400'
+                        ? 'bg-white/25 text-white'
+                        : 'bg-[#F2EFE9] text-[#78716C]'
                     }`}
                   >
                     {count}
@@ -153,16 +159,16 @@ export const FeaturedProjectsGrid: React.FC<FeaturedProjectsGridProps> = ({
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-20 bg-[#0F172A]/60 rounded-xl border border-gray-800 p-8"
+            className="text-center py-20 bg-white rounded-xl border border-[#E5E0D5] p-8 shadow-sm"
           >
-            <Layers className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-            <h3 className="text-xl font-serif text-white mb-2">No projects found in this category</h3>
-            <p className="text-sm text-gray-400 max-w-md mx-auto mb-6">
+            <Layers className="w-12 h-12 text-[#9E7B35] mx-auto mb-4" />
+            <h3 className="text-xl font-serif text-[#1C1917] mb-2">No projects found in this category</h3>
+            <p className="text-sm text-[#57534E] max-w-md mx-auto mb-6">
               We specialize in custom commissions for any architectural scale. Contact our bespoke engineering team.
             </p>
             <button
               onClick={() => setSelectedCategory('ALL')}
-              className="px-6 py-2.5 bg-[#1E293B] hover:bg-[#C9A96A] hover:text-[#0B0F17] text-white rounded text-xs uppercase tracking-wider font-medium transition-all"
+              className="px-6 py-2.5 bg-[#1C1917] hover:bg-[#9E7B35] text-white rounded text-xs uppercase tracking-wider font-semibold transition-all"
             >
               View All Projects
             </button>
@@ -174,7 +180,6 @@ export const FeaturedProjectsGrid: React.FC<FeaturedProjectsGridProps> = ({
           >
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, index) => {
-                // First item gets grand hero span when viewing All or when it's the primary showcase
                 const isGrand = index === 0 && (selectedCategory === 'ALL' || selectedCategory === '');
 
                 return (
@@ -189,37 +194,37 @@ export const FeaturedProjectsGrid: React.FC<FeaturedProjectsGridProps> = ({
                       opacity: { duration: 0.25 },
                       scale: { duration: 0.25 },
                     }}
-                    whileHover={{ y: -6, scale: 1.015 }}
+                    whileHover={{ y: -6 }}
                     onClick={() => onSelectProject(project)}
-                    className={`group cursor-pointer rounded-lg overflow-hidden border border-gray-800 hover:border-[#C9A96A]/60 bg-[#0F172A] transition-colors duration-300 hover:shadow-2xl hover:shadow-[#C9A96A]/15 flex flex-col justify-between ${
+                    className={`group cursor-pointer rounded-lg overflow-hidden border border-[#E7E2D8] hover:border-[#9E7B35] bg-white transition-all duration-300 hover:shadow-xl flex flex-col justify-between ${
                       isGrand ? 'lg:col-span-8' : 'lg:col-span-4'
                     }`}
                   >
                     {/* Image Container */}
-                    <div className={`relative overflow-hidden ${isGrand ? 'h-80 sm:h-[450px]' : 'h-72'}`}>
+                    <div className={`relative overflow-hidden ${isGrand ? 'h-80 sm:h-[420px]' : 'h-68'}`}>
                       <img
                         src={project.images[0]?.url || 'https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?q=80&w=1200&auto=format&fit=crop'}
                         alt={project.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
 
                       {/* Category Pill */}
                       <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-semibold bg-[#0B0F17]/80 text-[#C9A96A] border border-[#C9A96A]/30 backdrop-blur-md">
+                        <span className="px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-bold bg-white/95 text-[#1C1917] border border-[#E7E2D8] shadow-xs backdrop-blur-md">
                           {project.category}
                         </span>
                       </div>
 
                       {/* Location Badge */}
-                      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-gray-300">
+                      <div className="absolute bottom-3.5 left-4 right-4 flex items-center justify-between text-xs text-white">
                         <span className="flex items-center space-x-1 font-medium">
-                          <MapPin className="w-3.5 h-3.5 text-[#C9A96A]" />
+                          <MapPin className="w-3.5 h-3.5 text-[#EADBBE]" />
                           <span>{project.location}, {project.country}</span>
                         </span>
 
                         {project.installationHeightFeet && (
-                          <span className="px-2.5 py-0.5 rounded bg-[#1E293B]/80 text-[#C9A96A] font-serif font-light text-xs">
+                          <span className="px-2.5 py-0.5 rounded bg-black/60 text-[#EADBBE] font-serif font-light text-xs backdrop-blur-xs">
                             {project.installationHeightFeet}ft Drop
                           </span>
                         )}
@@ -229,34 +234,34 @@ export const FeaturedProjectsGrid: React.FC<FeaturedProjectsGridProps> = ({
                     {/* Card Information */}
                     <div className="p-6 flex-1 flex flex-col justify-between">
                       <div>
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-[11px] uppercase tracking-wider text-gray-400 font-medium">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-[11px] uppercase tracking-wider text-[#78716C] font-semibold">
                             Architect: {project.architect}
                           </span>
-                          <ArrowUpRight className="w-4 h-4 text-gray-500 group-hover:text-[#C9A96A] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                          <ArrowUpRight className="w-4 h-4 text-[#78716C] group-hover:text-[#9E7B35] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                         </div>
 
-                        <h3 className="font-serif text-2xl font-light text-[#F8F6F2] group-hover:text-[#C9A96A] transition-colors mb-2">
+                        <h3 className="font-serif text-2xl font-light text-[#1C1917] group-hover:text-[#9E7B35] transition-colors mb-2">
                           {project.title}
                         </h3>
 
-                        <p className="text-xs text-gray-400 line-clamp-2 font-light leading-relaxed mb-4">
+                        <p className="text-xs text-[#57534E] line-clamp-2 font-light leading-relaxed mb-4">
                           {project.description}
                         </p>
                       </div>
 
                       {/* Materials tags */}
-                      <div className="flex flex-wrap gap-1.5 pt-4 border-t border-gray-800/80">
+                      <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[#F0ECE1]">
                         {project.materials.slice(0, 3).map((m, idx) => (
                           <span
                             key={idx}
-                            className="px-2 py-0.5 rounded text-[10px] bg-[#1E293B] text-gray-300 font-medium"
+                            className="px-2 py-0.5 rounded text-[10px] bg-[#F5F2EB] text-[#57534E] font-medium"
                           >
                             {m}
                           </span>
                         ))}
                         {project.materials.length > 3 && (
-                          <span className="px-1.5 py-0.5 rounded text-[10px] text-gray-500">
+                          <span className="px-1.5 py-0.5 rounded text-[10px] text-[#8C827A]">
                             +{project.materials.length - 3} more
                           </span>
                         )}
@@ -270,14 +275,14 @@ export const FeaturedProjectsGrid: React.FC<FeaturedProjectsGridProps> = ({
         )}
 
         {/* Bottom CTA */}
-        <div className="mt-16 text-center">
+        <div className="mt-14 text-center">
           <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={onOpenStartProject}
-            className="inline-flex items-center space-x-3 px-8 py-4 rounded-sm border border-[#C9A96A] text-[#C9A96A] hover:bg-[#C9A96A] hover:text-[#0B0F17] font-semibold text-xs uppercase tracking-[0.2em] transition-all duration-300 cursor-pointer"
+            className="inline-flex items-center space-x-3 px-8 py-3.5 rounded-sm border border-[#9E7B35] bg-white text-[#8C6D2D] hover:bg-[#9E7B35] hover:text-white font-semibold text-xs uppercase tracking-[0.18em] transition-all duration-300 cursor-pointer shadow-xs"
           >
-            <span>Commission Custom Installation</span>
+            <span>{t('btn.startYourProject', 'Commission Custom Installation')}</span>
             <ArrowUpRight className="w-4 h-4" />
           </motion.button>
         </div>
@@ -285,4 +290,5 @@ export const FeaturedProjectsGrid: React.FC<FeaturedProjectsGridProps> = ({
     </section>
   );
 };
+
 

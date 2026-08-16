@@ -2,8 +2,14 @@
 
 @layer base {
   :root {
-    --font-serif: Georgia, 'Cormorant Garamond', serif;
-    --font-sans: "Helvetica Neue", Helvetica, Arial, 'Plus Jakarta Sans', sans-serif;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  body {
+    background-color: #FAF8F5;
+    color: #1C1917;
+    font-family: var(--font-sans);
   }
 }
 
@@ -15,54 +21,54 @@
   font-family: var(--font-sans);
 }
 
-/* Custom scrollbar for dark luxury experience */
+/* Custom scrollbar for bright luxury experience */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #F2EFE9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1a253d;
+  background: #D8D1C5;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #c9a96a;
+  background: #B38E46;
 }
 
-/* Glassmorphism utility aligned with Artistic Flair */
+/* Glassmorphism utility for bright luxury theme */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(248, 246, 242, 0.12);
+  border: 1px solid rgba(222, 215, 203, 0.8);
 }
 
 .glass-panel-gold {
-  background: rgba(26, 37, 61, 0.65);
+  background: rgba(255, 252, 246, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(201, 169, 106, 0.25);
+  border: 1px solid rgba(179, 142, 70, 0.35);
 }
 
 .glass-panel-light {
-  background: rgba(248, 246, 242, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(201, 169, 106, 0.25);
+  border: 1px solid rgba(222, 215, 203, 0.6);
 }
 
-/* Golden subtle glow & accents */
+/* Golden subtle glow & accents for bright theme */
 .gold-glow {
-  box-shadow: 0 0 40px -5px rgba(201, 169, 106, 0.25);
+  box-shadow: 0 10px 30px -5px rgba(179, 142, 70, 0.18);
 }
 
 .gold-text-gradient {
-  background: linear-gradient(135deg, #F8F6F2 0%, #E2D1A6 50%, #C9A96A 100%);
+  background: linear-gradient(135deg, #1C1917 0%, #8C6D2D 60%, #B38E46 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -76,8 +82,9 @@
   content: '';
   position: absolute;
   inset: -6px;
-  border: 0.5px solid rgba(201, 169, 106, 0.3);
+  border: 0.5px solid rgba(179, 142, 70, 0.35);
   pointer-events: none;
   transform: rotate(1deg);
 }
+
 

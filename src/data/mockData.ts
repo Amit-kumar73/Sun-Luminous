@@ -31,10 +31,10 @@ export const OFFICIAL_PDF_CATALOGS: PDFCatalog[] = [
       'Featured projects: Leela Palace Jaipur, Ritz Delhi, Oberoi Soaltee Kathmandu, Taj Sawai Villas, Clarks Exotica, ITC Hotels, Accor Chennai'
     ],
     contactPerson: {
-      name: 'Ms. Kamya Raghuvanshi',
-      role: 'Business Head — ID / Hospitality',
-      phone: ['+91 93127 40404', '+91 95608 08413'],
-      email: ['interiors11@sunluminous.com', 'interiors12@sunluminous.com']
+      name: 'Ms. Ananya Sharma',
+      role: 'Head of Hospitality & Bespoke Commissions',
+      phone: ['+91 98201 88472', '+91 98110 54291'],
+      email: ['concierge@sunluminous.com', 'hospitality@sunluminous.com']
     }
   },
   {
@@ -53,10 +53,10 @@ export const OFFICIAL_PDF_CATALOGS: PDFCatalog[] = [
       'Custom gradient color processes with zero-waste glass remelting cycle'
     ],
     contactPerson: {
-      name: 'Ms. Kamya Raghuvanshi',
-      role: 'Business Head — Residential & Bespoke',
-      phone: ['+91 93127 40404', '+91 95608 08413'],
-      email: ['interiors11@sunluminous.com', 'interiors12@sunluminous.com']
+      name: 'Ms. Ananya Sharma',
+      role: 'Head of Residential & Bespoke Design',
+      phone: ['+91 98201 88472', '+91 98110 54291'],
+      email: ['concierge@sunluminous.com', 'bespoke@sunluminous.com']
     }
   },
   {
@@ -75,10 +75,10 @@ export const OFFICIAL_PDF_CATALOGS: PDFCatalog[] = [
       'Landmark installations: Minerva Tower Mumbai, Monte South, 360 West Worli, Lodha World One Towers, CM House, Inorbit'
     ],
     contactPerson: {
-      name: 'Ms. Kamya Raghuvanshi',
-      role: 'Business Head — Large Installations & Infrastructure',
-      phone: ['+91 93127 40404', '+91 95608 08413'],
-      email: ['interiors11@sunluminous.com', 'interiors12@sunluminous.com']
+      name: 'Ms. Ananya Sharma',
+      role: 'Head of Large Installations & Infrastructure',
+      phone: ['+91 98201 88472', '+91 98110 54291'],
+      email: ['concierge@sunluminous.com', 'projects@sunluminous.com']
     }
   }
 ];
@@ -1121,14 +1121,14 @@ export const INITIAL_ARCHITECT_RESOURCES: ArchitectResource[] = [
 export const INITIAL_JOURNAL_ARTICLES: JournalArticle[] = [
   {
     id: 'art-01',
-    title: 'The 1,450°C Cycle: Generational Glass Craftsmanship at Sutra',
-    slug: 'generational-glass-craftsmanship-at-sutra',
+    title: 'The 1,450°C Cycle: Generational Glass Craftsmanship at SUN LUMINOUS',
+    slug: 'generational-glass-craftsmanship-at-sun-luminous',
     category: 'Artisan Engineering',
-    author: 'Ms. Kamya Raghuvanshi & Master Glassmakers',
+    author: 'Ms. Ananya Sharma & Master Glassmakers',
     publishedDate: 'August 02, 2026',
     readTime: '6 min read',
     excerpt: 'Inside India’s largest bespoke glass blowing ecosystem: melting pure silica at 1,450°C, hand-pulling gradient crystals, and 100% circular glass recycling.',
-    content: `To become a premier glass-blower takes years of practice and experience, with knowledge passed from masters to apprentices. These craftsmen become irreplaceable and are the foundation stone of Sutra artistry...`,
+    content: `To become a premier glass-blower takes years of practice and experience, with knowledge passed from masters to apprentices. These craftsmen become irreplaceable and are the foundation stone of SUN LUMINOUS artistry...`,
     coverImage: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=1200&auto=format&fit=crop'
   },
   {
@@ -1136,10 +1136,10 @@ export const INITIAL_JOURNAL_ARTICLES: JournalArticle[] = [
     title: 'Engineering for Scale: 100+ Landmark Hospitality Installations',
     slug: 'engineering-for-scale-hospitality-installations',
     category: 'Hospitality Design',
-    author: 'Sutra Engineering Lab',
+    author: 'SUN LUMINOUS Engineering Atelier',
     publishedDate: 'July 18, 2026',
     readTime: '8 min read',
-    excerpt: 'How Sutra collaborates with world-renowned architects like Foster + Partners and Kerry Hill to engineer monument-scale atriums with precision safety and DALI controls.',
+    excerpt: 'How SUN LUMINOUS collaborates with world-renowned architects like Foster + Partners and Kerry Hill to engineer monument-scale atriums with precision safety and DALI controls.',
     content: `From the 100ft vertical drop at Minerva Tower to the delicate water pavilions of luxury resorts, large-scale installations demand structural load distribution, anti-sway titanium cables, and zero-compromise optical fidelity...`,
     coverImage: 'https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?q=80&w=1200&auto=format&fit=crop'
   }
