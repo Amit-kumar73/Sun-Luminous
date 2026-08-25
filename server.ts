@@ -4,6 +4,8 @@ import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
 import dotenv from "dotenv";
 
+import { isFirebaseAdminConfigured } from "./server/firebase-admin";
+
 dotenv.config();
 
 const app = express();
@@ -275,12 +277,6 @@ let leadsStore = [
   }
 ];
 
-let supabaseConfigStore = {
-  url: process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || '',
-  anonKey: process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || '',
-  connected: false
-};
-
 // Lazy Gemini AI initialization
 function getGeminiAi() {
   const apiKey = process.env.GEMINI_API_KEY;
@@ -550,20 +546,15 @@ Generate JSON with:
   }
 });
 
-// Supabase config status routes
-app.get("/api/supabase/status", (req, res) => {
+// Firebase configuration status route
+app.get("/api/firebase/status", (req, res) => {
+  const adminConfigured = isFirebaseAdminConfigured();
+  const projectId = process.env.VITE_FIREBASE_PROJECT_ID || process.env.FIREBASE_PROJECT_ID || null;
   res.json({
-    connected: Boolean(supabaseConfigStore.url && supabaseConfigStore.anonKey),
-    url: supabaseConfigStore.url ? `${supabaseConfigStore.url.substring(0, 15)}...` : null
+    configured: Boolean(adminConfigured || projectId),
+    adminConfigured,
+    projectId: projectId ? `${projectId.substring(0, 4)}***` : null
   });
-});
-
-app.post("/api/supabase/config", (req, res) => {
-  const { url, anonKey } = req.body;
-  supabaseConfigStore.url = url || '';
-  supabaseConfigStore.anonKey = anonKey || '';
-  supabaseConfigStore.connected = Boolean(url && anonKey);
-  res.json({ success: true, connected: supabaseConfigStore.connected });
 });
 
 // Start Express + Vite Server

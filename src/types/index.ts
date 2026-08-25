@@ -198,8 +198,10 @@ export interface HospitalityAdvantage {
   description: string;
 }
 
-export interface SupabaseConfig {
-  url: string;
-  anonKey: string;
-  connected: boolean;
+export interface FirebaseConfigStatus {
+  projectId: string | null;
+  authConnected: boolean;
+  firestoreConnected: boolean;
+  adminConfigured: boolean;
 }
+

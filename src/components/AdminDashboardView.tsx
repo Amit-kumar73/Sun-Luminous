@@ -9,7 +9,7 @@ interface AdminDashboardViewProps {
 }
 
 export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({ onCloseAdmin }) => {
-  const [activeTab, setActiveTab] = useState<'leads' | 'projects' | 'ai-writer' | 'supabase'>('leads');
+  const [activeTab, setActiveTab] = useState<'leads' | 'projects' | 'ai-writer' | 'firebase'>('leads');
 
   const [leads, setLeads] = useState<Lead[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
@@ -31,14 +31,20 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({ onCloseA
   const [aiGenerating, setAiGenerating] = useState(false);
   const [generatedResult, setGeneratedResult] = useState<any | null>(null);
 
-  // Supabase Config state
-  const [supabaseUrl, setSupabaseUrl] = useState('');
-  const [supabaseAnonKey, setSupabaseAnonKey] = useState('');
-  const [supabaseConnected, setSupabaseConnected] = useState(false);
+  // Firebase Config state
+  const [firebaseStatus, setFirebaseStatus] = useState<{
+    configured: boolean;
+    adminConfigured: boolean;
+    projectId: string | null;
+  }>({
+    configured: false,
+    adminConfigured: false,
+    projectId: null
+  });
 
   useEffect(() => {
     loadAdminData();
-    checkSupabaseStatus();
+    checkFirebaseStatus();
   }, []);
 
   const loadAdminData = async () => {
@@ -54,13 +60,13 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({ onCloseA
     }
   };
 
-  const checkSupabaseStatus = async () => {
+  const checkFirebaseStatus = async () => {
     try {
-      const res = await fetch('/api/supabase/status');
+      const res = await fetch('/api/firebase/status');
       const data = await res.json();
-      setSupabaseConnected(data.connected);
+      setFirebaseStatus(data);
     } catch (err) {
-      console.warn('Supabase status check failed:', err);
+      console.warn('Firebase status check failed:', err);
     }
   };
 
@@ -129,22 +135,6 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({ onCloseA
       setGeneratedResult(null);
     } catch (err) {
       alert("Failed to save project");
-    }
-  };
-
-  const handleSaveSupabaseConfig = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const res = await fetch('/api/supabase/config', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: supabaseUrl, anonKey: supabaseAnonKey })
-      });
-      const data = await res.json();
-      setSupabaseConnected(data.connected);
-      alert(data.connected ? "Supabase successfully connected!" : "Supabase credentials updated.");
-    } catch (err) {
-      alert("Failed to save Supabase config.");
     }
   };
 
@@ -249,7 +239,7 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({ onCloseA
                 Sutra Admin Portal & Lead Engine
               </h1>
               <p className="text-xs text-gray-400">
-                Manage architectural project inquiries, publish case studies, and configure Supabase.
+                Manage architectural project inquiries, publish case studies, and view Firebase cloud status.
               </p>
             </div>
           </div>
@@ -299,15 +289,15 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({ onCloseA
           </button>
 
           <button
-            onClick={() => setActiveTab('supabase')}
+            onClick={() => setActiveTab('firebase')}
             className={`px-4 py-2 rounded text-xs uppercase tracking-wider font-semibold transition-all flex items-center space-x-1.5 ${
-              activeTab === 'supabase'
+              activeTab === 'firebase'
                 ? 'bg-[#C9A96A] text-[#0B0F17]'
                 : 'bg-[#0F172A] text-gray-400 hover:text-white'
             }`}
           >
             <Database className="w-3.5 h-3.5" />
-            <span>Supabase Config</span>
+            <span>Firebase Cloud Engine</span>
           </button>
         </div>
 
@@ -687,60 +677,52 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({ onCloseA
           </div>
         )}
 
-        {/* Tab 4: Supabase Config */}
-        {activeTab === 'supabase' && (
+        {/* Tab 4: Firebase Config & Cloud Engine */}
+        {activeTab === 'firebase' && (
           <div className="space-y-6 max-w-2xl">
             <div>
               <h2 className="font-serif text-2xl font-light flex items-center space-x-2">
                 <Database className="w-5 h-5 text-[#C9A96A]" />
-                <span>Supabase Database Connection</span>
+                <span>Firebase Cloud Engine & Persistence</span>
               </h2>
               <p className="text-xs text-gray-400 mt-1">
-                Sutra Luminis is fully integrated with Supabase PostgreSQL for live cloud persistence, lead tracking, and media storage.
+                SUN LUMINOUS is integrated with Google Firebase & Firestore for real-time lead capture, client authentication, and cloud data persistence.
               </p>
             </div>
 
             <div className={`p-4 rounded-lg border flex items-center justify-between text-xs ${
-              supabaseConnected
+              firebaseStatus.configured
                 ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-300'
                 : 'bg-amber-950/40 border-amber-500/40 text-amber-300'
             }`}>
               <div className="flex items-center space-x-2">
-                <span className={`w-2 h-2 rounded-full ${supabaseConnected ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
-                <span>{supabaseConnected ? 'Supabase Database Connected Live' : 'Using Server Local State Engine (Config Option Below)'}</span>
+                <span className={`w-2 h-2 rounded-full ${firebaseStatus.configured ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`} />
+                <span>{firebaseStatus.configured ? `Firebase Active (Project: ${firebaseStatus.projectId || 'Connected'})` : 'Server Local Backing Store Active (Firebase ready for credentials)'}</span>
               </div>
             </div>
 
-            <form onSubmit={handleSaveSupabaseConfig} className="p-6 rounded-lg bg-[#0F172A] border border-gray-800 space-y-4">
-              <div>
-                <label className="text-xs text-gray-300 block mb-1">Supabase URL</label>
-                <input
-                  type="text"
-                  value={supabaseUrl}
-                  onChange={(e) => setSupabaseUrl(e.target.value)}
-                  placeholder="https://your-project.supabase.co"
-                  className="w-full bg-[#0B0F17] border border-gray-800 rounded p-2.5 text-xs text-white"
-                />
+            <div className="p-6 rounded-lg bg-[#0F172A] border border-gray-800 space-y-4">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#C9A96A]">Configured Services</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="p-3 bg-[#0B0F17] rounded border border-gray-800/80">
+                  <span className="text-gray-400 block text-[11px]">Client SDK (Firestore & Auth)</span>
+                  <span className="font-mono text-white font-medium">src/lib/firebase.ts</span>
+                </div>
+                <div className="p-3 bg-[#0B0F17] rounded border border-gray-800/80">
+                  <span className="text-gray-400 block text-[11px]">Server Admin SDK</span>
+                  <span className="font-mono text-white font-medium">server/firebase-admin.ts</span>
+                </div>
               </div>
 
-              <div>
-                <label className="text-xs text-gray-300 block mb-1">Supabase Anon Key</label>
-                <input
-                  type="password"
-                  value={supabaseAnonKey}
-                  onChange={(e) => setSupabaseAnonKey(e.target.value)}
-                  placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                  className="w-full bg-[#0B0F17] border border-gray-800 rounded p-2.5 text-xs text-white font-mono"
-                />
+              <div className="pt-2 text-xs text-gray-400 space-y-2 border-t border-gray-800">
+                <p>Environment variables are managed via <span className="text-white font-mono">.env.example</span> / AI Studio Secrets:</p>
+                <div className="bg-[#0B0F17] p-3 rounded font-mono text-[11px] text-gray-300 space-y-1">
+                  <div>VITE_FIREBASE_API_KEY</div>
+                  <div>VITE_FIREBASE_PROJECT_ID</div>
+                  <div>FIREBASE_SERVICE_ACCOUNT (Server Admin)</div>
+                </div>
               </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 bg-[#C9A96A] hover:bg-[#D4AF37] text-[#0B0F17] font-semibold text-xs uppercase tracking-widest rounded transition-all"
-              >
-                Save Supabase Credentials
-              </button>
-            </form>
+            </div>
           </div>
         )}
       </div>

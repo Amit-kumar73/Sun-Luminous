@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp, type FirebaseApp } from 'firebase/app';
 import { getAuth, type Auth } from 'firebase/auth';
-import { getFirestore, type Firestore } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, type Firestore } from 'firebase/firestore';
 
 const env = (import.meta as any).env || {};
 
@@ -35,6 +35,30 @@ if (isFirebaseConfigured) {
 export const app = appInstance;
 export const auth = authInstance;
 export const db = dbInstance;
+
+// Helper to save project lead to Firestore if configured, otherwise server API
+export async function submitLeadData(leadPayload: any) {
+  if (db) {
+    try {
+      const docRef = await addDoc(collection(db, 'leads'), leadPayload);
+      return { success: true, data: { id: docRef.id, ...leadPayload } };
+    } catch (e) {
+      console.warn('Firestore lead insert failed, falling back to local server API:', e);
+    }
+  }
+
+  // Fallback to Express backend API
+  const res = await fetch('/api/leads', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(leadPayload)
+  });
+  if (!res.ok) {
+    throw new Error('Failed to submit lead to server');
+  }
+  const data = await res.json();
+  return { success: true, data };
+}
 
 export enum OperationType {
   CREATE = 'create',

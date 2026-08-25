@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { X, CheckCircle, Upload, ArrowRight, ShieldCheck, FileText, Send, Sparkles } from 'lucide-react';
-import { submitLeadData } from '../lib/supabaseClient';
+import { submitLeadData } from '../lib/firebase';
 
 interface ProjectInquiryModalProps {
   isOpen: boolean;
